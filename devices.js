@@ -13505,6 +13505,9 @@ const devices = [
     },
 
     // Yookee
+    // default: close 100, open 0
+    // coverInverted: true - close 0, open 100
+    // ha: 0 open
     {
         zigbeeModel: ['D10110'],
         model: 'D10110',
@@ -13512,7 +13515,7 @@ const devices = [
         description: 'Smart blind controller',
         fromZigbee: [fz.cover_position_tilt, fz.battery],
         toZigbee: [tz.cover_state, tz.cover_position_tilt],
-        meta: {configureKey: 1},
+        meta: {configureKey: 1, coverInverted: true},
         configure: async (device, coordinatorEndpoint, logger) => {
             const endpoint = device.getEndpoint(1);
             await reporting.bind(endpoint, coordinatorEndpoint, ['genPowerCfg', 'closuresWindowCovering']);
